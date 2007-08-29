@@ -1,12 +1,14 @@
-use 5.006001;
-use ExtUtils::MakeMaker;
-# See lib/ExtUtils/MakeMaker.pm for details of how to influence
-# the contents of the Makefile that is written.
-WriteMakefile(
-    NAME              => 'Data::Path',
-    VERSION_FROM      => 'lib/Data/Path.pm', # finds $VERSION
-    PREREQ_PM         => {}, # e.g., Module::Name => 1.1
-    ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
-      (ABSTRACT_FROM  => 'lib/Data/Path.pm', # retrieve abstract from module
-       AUTHOR         => 'Marco Schrieck <marco.schrieck@gmx.de>') : ()),
-);
+use inc::Module::Install;
+
+name            'Data-Path';
+perl_version    '5.006';
+
+all_from        'lib/Data/Path.pm';
+
+requires            'Carp'              => '0';
+requires            'Scalar::Util'      => '0';
+
+build_requires      'Test::More'        => '0.7';
+build_requires      'Test::MockObject'  => '1.08';
+
+WriteAll;

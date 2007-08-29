@@ -1,6 +1,2 @@
-Revision history for Perl extension Data::Path.
-
-1.0  Mon Jan 30 10:50:50 2006
-	- original version; created by h2xs 1.23 with options
-		-n Data::Path --skip ppport -v 1.0 -X
-
+Sat Aug 25 21:48:20 CDT 2007  jeremy@marzhillstudios.com
+  * Import of original from CPAN
