@@ -6,7 +6,7 @@ use warnings;
 use Scalar::Util 'blessed';
 use Carp;
 
-our $VERSION = '1.2';
+our $VERSION = '1.3';
 
 sub new {
 	my ($class,$data,$callback)=@_;
@@ -58,7 +58,11 @@ sub get {
 
 	# get key till / or [
 	my $key = $1 if ( $rkey =~ s/^\/([^\/|\[]+)//o );
-	
+    croak 'malformed path expression'
+        unless $key;
+   
+    croak 'malformed array index request' 
+        if $rkey =~ /^\[([^\d]*)\]/;
 	# check index for index
 	my $index = $1 if ( $rkey =~ s/^\[(\d+)\]//o );
 
