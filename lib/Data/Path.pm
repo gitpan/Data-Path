@@ -6,7 +6,7 @@ use warnings;
 use Scalar::Util qw/reftype blessed/;
 use Carp;
 
-our $VERSION = '1.3.1';
+our $VERSION = '1.4.1';
 
 sub new {
 	my ($class,$data,$callback)=@_;
