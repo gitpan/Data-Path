@@ -3,10 +3,10 @@ package Data::Path;
 use 5.006001;
 use strict;
 use warnings;
-use Scalar::Util 'blessed';
+use Scalar::Util qw/reftype blessed/;
 use Carp;
 
-our $VERSION = '1.3';
+our $VERSION = '1.3.1';
 
 sub new {
 	my ($class,$data,$callback)=@_;
@@ -92,7 +92,7 @@ sub get {
 		$self->{callback}->{index_does_not_exist}->($data, $key, $index, $value, $rest) 
 			if not exists $value->[$index] and $rest;
 
-		if ( ref $value eq 'ARRAY' ) {
+		if ( reftype $value eq 'ARRAY' ) {
 			$value=$value->[$index];
 		} else {
 			$self->{callback}->{retrieve_index_from_non_array}->($data, $key, $index, $value, $rest);
@@ -101,7 +101,7 @@ sub get {
 
 	# check if last element is reached
 	if ($rest) {
-		if ( ref $value eq 'HASH' || blessed $value ) {
+		if ( reftype $value eq 'HASH' || blessed $value ) {
 			$value=$self->get($rest,$value);
 		} else {
 			$self->{callback}->{retrieve_key_from_non_hash}->($data, $key, $index, $value, $rest);
